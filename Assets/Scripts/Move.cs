@@ -12,7 +12,7 @@ public class Move : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Awake()
     {
-        animator = GetComponent<animator>();
+        animator = GetComponent<Animator>();
         if (animator == null)
         {
             Debug.LogError("There is no animator");
@@ -54,6 +54,6 @@ public class Move : MonoBehaviour
 
         transform.Translate(direction * this.speed * Time.deltaTime);
 
-        animator.SetFloat("speed", (direction * this.speed ));
+        animator.SetFloat("speed", (direction * this.speed).magnitude);
     }
 }
