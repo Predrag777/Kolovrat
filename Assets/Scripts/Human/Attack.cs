@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class Attack : MonoBehaviour
 {
-    bool isAttack;
+    public bool isAttack;
     Animator animator;
 
     void Start()

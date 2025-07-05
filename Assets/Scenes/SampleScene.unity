@@ -898,7 +898,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1067694610}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3f44aa50b28d7c830be753b81c30a5b5, type: 3}
   m_Name: 
@@ -1010,7 +1010,7 @@ Animator:
   m_GameObject: {fileID: 1618222044}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: f3392e95529ae7540ad53657e3d0ce7d, type: 3}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 33c97955fa63cffb7ae7f52fc0c36c34, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -1049,6 +1049,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 2
+--- !u!114 &1618222050
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1618222044}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f44aa50b28d7c830be753b81c30a5b5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 2
 --- !u!1 &1790235600 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 100026, guid: 33a929319e23b9445a18e5e226f7181e, type: 3}
@@ -1134,6 +1147,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9500000, guid: f3392e95529ae7540ad53657e3d0ce7d, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9500000, guid: f3392e95529ae7540ad53657e3d0ce7d, type: 3}
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: 33c97955fa63cffb7ae7f52fc0c36c34, type: 2}
@@ -1142,12 +1159,13 @@ PrefabInstance:
       value: "\nBinding warning: Some generic clip(s) animate transforms that are
         already bound by a Humanoid avatar. These transforms can only be changed
         by Humanoid clips.\n\tTransform 'Bip001'\n\tTransform 'Bip001 R Foot'\n\tTransform
-        'Bip001 R UpperArm'\n\tTransform 'Bip001 R Calf'\n\tTransform 'Bip001 L Toe0'\n\tTransform
-        'Bip001 Head'\n\tTransform 'Bip001 L UpperArm'\n\tTransform 'Bip001 Neck'\n\tTransform
-        'Bip001 Spine'\n\tTransform 'Bip001 L Clavicle'\n\tand more ...\n\tFrom animation
+        'Bip001 R Toe0'\n\tTransform 'Bip001 R UpperArm'\n\tTransform 'Bip001 R Calf'\n\tTransform
+        'Bip001 L Toe0'\n\tTransform 'Bip001 Head'\n\tTransform 'Bip001 L UpperArm'\n\tTransform
+        'Bip001 Neck'\n\tTransform 'Bip001 Spine'\n\tand more ...\n\tFrom animation
         clip 'mixamo.com'"
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 9500000, guid: f3392e95529ae7540ad53657e3d0ce7d, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
@@ -1166,6 +1184,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 100054, guid: f3392e95529ae7540ad53657e3d0ce7d, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1618222046}
+    - targetCorrespondingSourceObject: {fileID: 100054, guid: f3392e95529ae7540ad53657e3d0ce7d, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1618222050}
   m_SourcePrefab: {fileID: 100100000, guid: f3392e95529ae7540ad53657e3d0ce7d, type: 3}
 --- !u!1001 &2667960884271528058
 PrefabInstance:
