@@ -6,17 +6,19 @@ public class Move : MonoBehaviour
     [SerializeField] private Transform cameraTransform;
     private float mouseSensivity = 100f;
     private Animator animator;
-
+    private Rigidbody rb;
 
     private float xRotate = 0f;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    private Vector3 movement;
+
     void Awake()
     {
         animator = GetComponent<Animator>();
+        rb = GetComponent<Rigidbody>();
         if (animator == null)
-        {
             Debug.LogError("There is no animator");
-        }
+        if (rb == null)
+            Debug.LogError("There is no Rigidbody");
     }
 
     void Start()
@@ -24,11 +26,16 @@ public class Move : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
     }
 
-    // Update is called once per frame
     void Update()
     {
-        MoveHandler();
         RotationHandler();
+        ProcessInput();
+        AnimateMovement();
+    }
+
+    void FixedUpdate()
+    {
+        MoveHandler();
     }
 
     void RotationHandler()
@@ -42,40 +49,26 @@ public class Move : MonoBehaviour
         xRotate = Mathf.Clamp(xRotate, -45f, 75f);
 
         cameraTransform.localRotation = Quaternion.Euler(xRotate, 0f, 0f);
+    }
 
+    void ProcessInput()
+    {
+        float v = Input.GetAxis("Vertical");
+        float h = Input.GetAxis("Horizontal");
+        movement = new Vector3(h, 0, v).normalized;
     }
 
     void MoveHandler()
     {
-        float v = Input.GetAxis("Vertical");
-        float h = Input.GetAxis("Horizontal");
-
-        Vector3 direction = new Vector3(h, 0, v);
-
-
-
-        if (v > 0)
+        if (movement.magnitude > 0)
         {
-            animator.SetFloat("speed", (direction * this.speed).magnitude);
-            transform.Translate(direction * this.speed * Time.deltaTime);
+            Vector3 move = transform.TransformDirection(movement) * speed * Time.fixedDeltaTime;
+            rb.MovePosition(rb.position + move);
         }
-        else if (v < 0)
-        {
-            animator.SetFloat("speed", 0.3f);
-            transform.Translate(direction * (this.speed/2) * Time.deltaTime);
-        }
+    }
 
-        if (h > 0)
-        {
-            animator.SetFloat("speed", (direction * this.speed).magnitude);
-            transform.Translate(direction * this.speed * Time.deltaTime);
-        }
-        else if (h < 0)
-        {
-            animator.SetFloat("speed", (direction * this.speed).magnitude);
-            transform.Translate(direction * this.speed * Time.deltaTime);
-        }
-
-        //animator.SetFloat("speed", (direction * this.speed).magnitude);
+    void AnimateMovement()
+    {
+        animator.SetFloat("speed", movement.magnitude);
     }
 }
