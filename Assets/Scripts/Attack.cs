@@ -14,15 +14,23 @@ public class Attack : MonoBehaviour
     void Update()
     {
         performAttack();
-
+        performAttack2();
         if (isAttack)
         {
             AnimatorStateInfo stateInfo = animator.GetCurrentAnimatorStateInfo(0);
-            if (stateInfo.IsName("attack")) 
+            if (stateInfo.IsName("attack"))
             {
                 if (stateInfo.normalizedTime >= 1.0f)
                 {
                     animator.SetBool("attack", false);
+                    isAttack = false;
+                }
+            }
+            else if (stateInfo.IsName("attack2"))
+            {
+                if (stateInfo.normalizedTime >= 1.0f)
+                {
+                    animator.SetBool("attack2", false);
                     isAttack = false;
                 }
             }
@@ -33,8 +41,18 @@ public class Attack : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0) && !isAttack)
         {
-            Debug.Log("Attack");
+            
             animator.SetBool("attack", true);
+            isAttack = true;
+        }
+    }
+
+
+    void performAttack2()
+    {
+        if (Input.GetMouseButtonDown(1))
+        {
+            animator.SetBool("attack2", true);
             isAttack = true;
         }
     }

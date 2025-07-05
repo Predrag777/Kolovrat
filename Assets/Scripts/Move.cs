@@ -52,8 +52,30 @@ public class Move : MonoBehaviour
 
         Vector3 direction = new Vector3(h, 0, v);
 
-        transform.Translate(direction * this.speed * Time.deltaTime);
 
-        animator.SetFloat("speed", (direction * this.speed).magnitude);
+
+        if (v > 0)
+        {
+            animator.SetFloat("speed", (direction * this.speed).magnitude);
+            transform.Translate(direction * this.speed * Time.deltaTime);
+        }
+        else if (v < 0)
+        {
+            animator.SetFloat("speed", 0.3f);
+            transform.Translate(direction * (this.speed/2) * Time.deltaTime);
+        }
+
+        if (h > 0)
+        {
+            animator.SetFloat("speed", (direction * this.speed).magnitude);
+            transform.Translate(direction * this.speed * Time.deltaTime);
+        }
+        else if (h < 0)
+        {
+            animator.SetFloat("speed", (direction * this.speed).magnitude);
+            transform.Translate(direction * this.speed * Time.deltaTime);
+        }
+
+        //animator.SetFloat("speed", (direction * this.speed).magnitude);
     }
 }
